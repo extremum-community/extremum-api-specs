@@ -1,0 +1,25 @@
+{
+  "title": "Patch Operation: move, copy",
+  "allOf": [
+    {
+      "$ref": "patch-operation.v1.json"
+    },
+    {
+      "type": "object",
+      "required": [
+        "from"
+      ],
+      "properties": {
+        "from": {
+          "type": "string",
+          "description": "The [JSON Pointer](https://tools.ietf.org/html/rfc6901) compliant path pointing to the location to move/copy from."
+       	}
+      }
+    }
+  ],
+  "x-stoplight": {
+    "docs": {
+      "showModels": false
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Descriptor",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    }
+  }
+}

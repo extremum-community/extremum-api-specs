@@ -1,0 +1,49 @@
+{
+  "title": "Response Header",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "Response status.",
+      "enum": [
+        "ok",
+        "doing",
+        "warning",
+        "fail"
+      ]
+    },
+    "code": {
+      "type": "integer",
+      "description": "Response code.",
+      "minimum": 0
+    },
+    "timestamp": {
+      "type": "string",
+      "description": "Response timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format (yyyy-MM-dd'T'HH:mm:ss.SSSZ).",
+      "format": "date-time"
+    },
+    "rqid": {
+      "type": "string",
+      "description": "Request Id."
+    },
+    "locale": {
+      "type": "string",
+      "description": "Response locale as [IETF language tag](https://en.wikipedia.org/wiki/IETF_language_tag) in format specified by [RFC 5646](https://tools.ietf.org/html/rfc5646) (language-TERRITORY). See #docTextSection:zE8QfuPkuH6CdXAPi."
+    },
+    "alerts": {
+      "type": "array",
+      "description": "The alerts issued with the response.",
+      "items": {
+        "$ref": "https://raw.githubusercontent.com/electroshaman/extremum-api-specs/draft/reference/common/models/system/alert.v1.json"
+      }
+    }
+  },
+  "required": [
+    "status",
+    "code",
+    "timestamp",
+    "rqid",
+    "locale"
+  ],
+  "description": "The header of API response is the crucial data structure, which contains status information of how the requested action is processed and envelopes its result. \n\n### Response status \n\nThe status of response designates its final or preliminary result and allows to select a proper response handling routine on the requester side.\n\n|*Status*|*Description*|  \n|---|---|  \n|**ok**|Everything is done right. No errors and warnings.| \n|**doing**|The request has been received and now is being processed. Some additional time and/or steps needed to give a response.|\n|**warning**|The request has been processed, but there are some warnings in the *alerts* collection.|\n|**fail**|The request failed because of error(s) listed in the *alerts* collection.|\n\n### Response code\n\nThe response code provided in a JSON header contain commonly used standard HTTP response codes, which extend the given status and explain an actual outcome of request processing. Sometimes it doubles the response code in HTTP header, sometimes the code in JSON is different 🤔\n\n>**Important**: Some projects need \"Always OK\" mode for HTTP connectivity in order to avoid interference caused by proxy-servers overriding original response for some errors. So then the response code in JSON header can be different from the one in HTTP header.  \n>\n> For example, the HTTP response status is `200 OK`, but the actual API response in JSON body contains `fail` status and response code `404`.\n>\n>Nevertheless, the priority of JSON response code doesn't mean the requester shouldn't care about HTTP status. Proper handling of HTTP status is needed anyway, because in case of a fatal connectivity error there may not be JSON data in return.\n\nAs in HTTP, the first digit of the response code specifies one of five standard classes of responses, which is all explained below.\n\n#### 2xx — Success\n\nThe request was successfully received, understood, accepted, and processed. The response contains final result.\n\n|*Code*|*Type*|*Description*|\n|---|---|---|\n|200|Success|The request is processed successfully and the response contains final result.|\n|201|Created|The request has been fulfilled, resulting in the creation of a new resource.|\n|202|Accepted|The requested action has been accepted and  will be successfully processed most likely, but some additional steps may be taken on server-side to get it effective (e.g. moderation needed).|\n|204|No Content|The server successfully processed the request and is not returning any content (e.g. there is no match for a selection criteria or filter).|\n\n#### 1xx — Processing\n\nThis class of response codes indicates that the request was received and understood, but processing continues, so the requester should wait for a final response.\n\n|*Code*|*Type*|*Description*|\n|---|---|---|\n|100|Continue|The requested continuous action is allowed and should be continued. Before sending a large request body (>4Kb) the requester must send `Expect: 100-continue` as a header in its initial request and receive a `100 Continue` status code in response before sending the body. If the requester receives an error code such as 403 (Forbidden) or 405 (Method Not Allowed) then it shouldn't send the request's body.|\n|102|Processing|The request is successful, but its processing is not finished yet.|\n\n#### 3xx — Redirection\n\nThis class of response codes is not supported yet.\n\n#### 4xx — Client Error\n\nThe request failed because of a *Client Error*, which means that client didn't provide proper parameters, or/and the data format is wrong, or/and the request is not authorized.\n\n|*Code*|*Type*|*Description*|\n|---|---|---|\n|400|Bad Request|The request was malformed or had missing, invalid or uknown parameters.|\n|401|Unauthorized|The authorization token provided with the request was invalid.|\n|403|Access Denied|The requested data or action is not allowed for the requester.|\n|404|Not Found|The requested endpoint or data could not be found.|\n|409|Conflict|The requested action causes a data integrity conflict.|\n\n#### 5xx — Server Error\n\nThe request failed because of a *Server Error*, which means that something wrong happened on server side, because of misconfiguration or some outage.\n\n|*Code*|*Type*|*Description*|\n|---|---|---|\n|500|Internal Server Error|Something went wrong on the Simpozio servers.|\n|501|Not Implemented|The endpoint doesn't support the requested action or it lacks the ability to fulfill the request.|\n|502|Bad Gateway|The called server received an invalid response from the upstream server processing the request.|\n|503|Service Unavailable|The server is currently unavailable (because it is overloaded or down for maintenance).|\n|530|Frozen Project|The project requested data or action belongs to is frozen on server-side.|\n\nAll errors, warnings and their details are listed and attributed in *alerts* collection of the response 👇"
+}

@@ -1,0 +1,50 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Core API",
+    "version": "1.0",
+    "description": "Extremum Core API 1.0",
+    "contact": {
+      "name": "API Support",
+      "url": "https://extremum.io/support",
+      "email": "support@extremum.io"
+    },
+    "termsOfService": "https://extremum.io/terms",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://api.extremum.io/v1"
+    }
+  ],
+  "paths": {
+    "/{id}": {
+      "$ref": "../common/paths/everything-everything.v1.json"
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKey": {
+        "name": "Authorization",
+        "type": "apiKey",
+        "in": "header"
+      }
+    },
+    "schemas": {},
+    "responses": {
+      "common-response": {
+        "description": "Common Response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../common/models/system/response-header.v1.json"
+            }
+          }
+        }
+      }
+    }
+  }
+}

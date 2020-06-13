@@ -1,0 +1,35 @@
+{
+  "title": "Named",
+  "type": "object",
+  "properties": {
+    "slug": {
+      "type": "string",
+      "description": "The user-friendly and URL-valid name of the data element. [Learn more about the slug concept](https://en.wikipedia.org/wiki/Clean_URL#Slug).",
+      "pattern": "^[A-Za-z0-9 -_]+"
+    },
+    "name": {
+      "description": "The display name of the object.",
+      "oneOf": [
+        {
+          "type": "string",
+          "description": "The value of the attribute given in current locale determined by context of the API request."
+        },
+        {
+          "$ref": "multilingual.v1.json"
+        }
+      ]
+    },
+    "description": {
+      "description": "A brief description of the object. The [Markdown](http://commonmark.org/help/) is very welcome for formatting 🤗",
+      "oneOf": [
+        {
+          "type": "string",
+          "description": "The value of the attribute given in current locale determined by context of the API request."
+        },
+        {
+          "$ref": "multilingual.v1.json"
+        }
+      ]
+    }
+  }
+}

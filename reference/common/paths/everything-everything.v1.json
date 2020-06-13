@@ -1,0 +1,116 @@
+{
+  "summary": "Generic object operations",
+  "parameters": [
+    {
+      "$ref": "../parameters.v1.json#/header:Date"
+    },
+    {
+      "$ref": "../parameters.v1.json#/header:User-Agent"
+    },
+    {
+      "$ref": "../parameters.v1.json#/header:Accept-Language"
+    },
+    {
+      "$ref": "../parameters.v1.json#/header:X-HTTP-Method-Override"
+    },
+    {
+      "$ref": "../parameters.v1.json#/query:locale"
+    },
+    {
+      "in": "path",
+      "name": "id",
+      "required": true,
+      "schema": {
+        "type": "string"
+      },
+      "description": ""
+    }
+  ],
+  "get": {
+    "operationId": "get-object",
+    "summary": "Get an object",
+    "description": "Get an object by its unique ID.",
+    "tags": [
+      "Object"
+    ],
+    "security": [
+      {
+        "apiKey": []
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "../models/system/response-header.v1.json"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "object",
+                      "description": "Result data."
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "patch": {
+    "operationId": "patch-object",
+    "summary": "Update an object",
+    "description": "Update an object by its unique ID.",
+    "tags": [
+      "Object"
+    ],
+    "security": [
+      {
+        "apiKey": []
+      }
+    ],
+    "requestBody": {
+      "description": "The patch to be applied.",
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "../models/system/patch.v1.json"
+          },
+          "example": {
+            "$ref": "../models/fundamental/examples/patch.v1.json"
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "OK"
+      }
+    }
+  },
+  "delete": {
+    "operationId": "delete-object",
+    "summary": "Delete an object",
+    "description": "Delete an object by its unique ID.",
+    "security": [
+      {
+        "apiKey": []
+      }
+    ],
+    "tags": [
+      "Object"
+    ],
+    "responses": {
+      "200": {
+        "description": "OK"
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "title": "Patch Operation: remove",
+  "allOf": [
+    {
+      "$ref": "patch-operation.v1.json"
+    }
+  ],
+  "x-stoplight": {
+    "docs": {
+      "showModels": false
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "title": "Object",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique ID of the object."
+    },
+    "model": {
+      "type": "string",
+      "description": "The name of model that specifies the object structure."
+    },
+    "version": {
+      "type": "integer",
+      "description": "The object's version number."
+    },
+    "created": {
+      "type": "string",
+      "description": "The high-precision date/time of object's creation specified in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) format `YYYY-MM-DD'T'hh:mm:ss.ffffffZ`.",
+      "format": "date-time"
+    },
+    "modified": {
+      "type": "string",
+      "description": "The high-precision date/time of object's last modification in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) format `YYYY-MM-DD'T'hh:mm:ss.ffffffZ`.",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "id",
+    "model",
+    "version",
+    "created"
+  ],
+  "description": "The `object` model gives basic attribution to every data object stored in the platform. It specifies common identification of the objects and their versioning."
+}

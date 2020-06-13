@@ -1,0 +1,42 @@
+{
+  "title": "Patch Operation",
+  "type": "object",
+  "discriminator": {
+    "propertyName": "op",
+    "mapping": {
+      "test": "patch-operation-add-replace-test.v1.json",
+      "add": "patch-operation-add-replace-test.v1.json",
+      "replace": "patch-operation-add-replace-test.v1.json",
+      "remove": "patch-operation-remove.v1.json",
+      "move": "patch-operation-move-copy.v1.json",
+      "copy": "patch-operation-move-copy.v1.json"
+    }
+  },
+  "required": [
+    "op",
+    "path"
+  ],
+  "properties": {
+    "op": {
+      "type": "string",
+      "enum": [
+        "test",
+        "add",
+        "replace",
+        "remove",
+        "move",
+        "copy"
+      ],
+      "description": "The operation to perform."
+    },
+    "path": {
+      "type": "string",
+      "description": "The [JSON Pointer](https://tools.ietf.org/html/rfc6901) compliant path specifying certain part of the target object to operate on."
+    }
+  },
+  "x-stoplight": {
+    "docs": {
+      "showModels": false
+    }
+  }
+}

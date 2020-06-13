@@ -1,0 +1,29 @@
+{
+  "title": "Collection",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique ID of the collection."
+    },
+    "url": {
+      "type": "string",
+      "description": "The URL of the collection, which should be used for fetching data from it."
+    },
+    "count": {
+      "type": "integer",
+      "description": "The count of elements in the collection (if it's countable)."
+    },
+    "top": {
+      "description": "The list of top N elements in the collection (if provided).",
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "required": [
+    "id"
+  ],
+  "description": "The `collection` model specifies a structure of serial datasets larger than just simple JSON arrays. It specifies common identification of the collections and other attribution like size and an extract of its top elements.\n\nCollections are used for situations when the data output may consist of hundreds or even millions of serial elements, that is too heavy for immediate return. Another example is a collection that may have uncertain size when it grows in time. The processing of such datasets works better with paging it by smaller sequential fetches.\n\nA collection may also support data-streaming approach by using [Server-Sent Events](https://www.w3.org/TR/eventsource/) or [WebSockets](https://www.w3.org/TR/websockets/) and that's up to concrete implementation of respective endpoints."
+}

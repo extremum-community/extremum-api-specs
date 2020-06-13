@@ -1,0 +1,25 @@
+{
+  "title": "Patch Operation: add, replace, test",
+  "allOf": [
+    {
+      "$ref": "patch-operation.v1.json"
+    },
+    {
+      "type": "object",
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "type": "any",
+          "description": "The value to add, replace or test."
+        }
+      }
+    }
+  ],
+  "x-stoplight": {
+    "docs": {
+      "showModels": false
+    }
+  }
+}

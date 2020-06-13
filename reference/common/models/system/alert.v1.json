@@ -1,0 +1,53 @@
+{
+  "title": "Alert",
+  "type": "object",
+  "properties": {
+    "level": {
+        "type": "string",
+        "description": "Alert level.",
+        "enum": [
+            "fatal",
+            "error",
+            "warn",
+            "info",
+            "debug",
+            "trace"
+        ]
+    },
+    "code": {
+        "type": "integer",
+        "description": "Alert code.",
+        "minimum": 0
+    },
+    "timestamp": {
+        "type": "string",
+        "description": "Alert timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format (yyyy-MM-dd'T'HH:mm:ss.SSSZ).",
+        "format": "date-time"
+    },
+    "element": {
+        "type": "string",
+        "description": "Target element the alert is related to."
+    },
+    "message": {
+        "type": "string",
+        "description": "Message text."
+    },
+    "link": {
+        "type": "string",
+        "description": "Alert reference link.",
+        "format": "uri"
+    },
+    "traceId": {
+        "type": "string",
+        "description": "Alert Id in trace log.",
+        "format": "uuid"
+    }
+  },
+  "required": [
+    "level",
+    "code",
+    "message",
+    "timestamp"
+  ],
+  "description": "Every alert attached to the response header provides information about occuring errors, potential problems and system events, that should be properly handled by the requester for smoother user experience 😉\n\n### Alert level \n\nEvery alert is issued with a certain severity level, explained below:\n\n|*Level*|*Description*|\n|---|---|\n|**fatal**|A serious failure affecting application stability.|\n|**error**|An error or unexpected condition, which lead to an action failure, but doesn't affect the whole application.|\n|**warn**|Indication of a potential problem.|\n|**info**|Informational message that highlight the progress of an action at coarse-grained level.|\n|**debug**|Designates fine-grained informational events and detailed information on the flow through the application and involved third-party systems, which is most useful to debug an application.|\n|**trace**|Designates finer-grained information than the *debug* level, including internal system events. *Available only for on-premises configurations*.|\n\nThe alerts of severity below *'warn'* are not reported by default. These levels are available only for development and issue resolution purposes and require corresponding traceability enabled for the requester.\n\n### Alert code \n\nThe numeric code of alert designates a certain type of alert and specific conditions it is issued for.\n\n### Alert details \n\nThe attributes supplying details of the alert provide various helpful information for its proper handling. \n\n|*Attribute*|*Description*|\n|---|---|\n|timestamp|The date and time when the corresponding event occured.|\n|element|Points to a certain *element* of interation, which is related to the alert.|\n|message|A localized wording explaining the occured event.|\n|link|A URL of some reference documentation about the situation highlighted by the alert.|\n|traceId|A special reference Id that may be used for finding this alert in system trace log.|\n\nSome useful best practices for proper handling of errors and warnings can be found here — <http://www.userjourneys.com/blog/ux-guidelines-for-error-handling/>."
+}

@@ -1,0 +1,26 @@
+{
+    "title": "Timeframe",
+    "type": "object",
+    "properties": {
+        "duration": {
+            "type": [
+                "integer",
+                "string"
+            ],
+            "description": "The duration of the timeframe given in milliseconds or as a string like \"4h30m\", \"1d\", etc."
+        },
+        "start": {
+            "description": "The start of the timeframe specified in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) format `YYYY-MM-DD'T'hh:mm:ss.ffffffZ`.",
+            "type": "string",
+            "format": "date-time"
+        },
+        "end": {
+            "description": "The end of the timeframe specified in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) format `YYYY-MM-DD'T'hh:mm:ss.ffffffZ`.",
+            "type": "string",
+            "format": "date-time"
+        }
+    },
+    "required": [
+        "duration"
+    ]
+}

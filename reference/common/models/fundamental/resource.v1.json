@@ -1,0 +1,41 @@
+{
+  "title": "Resource",
+  "type": "object",
+  "allOf": [
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The type of the resource."
+        },
+        "status": {
+          "type": "string",
+          "description": "The status of the resource.",
+          "enum": [
+            "draft",
+            "active",
+            "hidden"
+          ]
+        },
+        "uri": {
+          "type": "string",
+          "description": "The URI of the resource.",
+          "format": "uri"
+        }
+      }
+    },
+    {
+      "$ref": "named.v1.json"
+    },
+    {
+      "name": {
+        "description": "The display name of the resource."
+      }
+    },
+    {
+      "name": {
+        "description": "A bried description of the resource."
+      }
+    }
+  ]
+}

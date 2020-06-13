@@ -1,0 +1,47 @@
+{
+  "header:Date": {
+    "in": "header",
+    "name": "Date",
+    "required": true,
+    "schema": {
+      "type": "string"
+    },
+    "description": "The date and time that the request was originated. The format is defined by [Section 7.1.1.1 of RFC 7231](https://tools.ietf.org/html/rfc7231#section-7.1.1.1).<br/>**NOTE:** That's the only place where we don't use [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) for date-time value, just because we can't and have to be compliant with the orthodox HTTP standard."
+  },
+  "header:User-Agent": {
+    "in": "header",
+    "name": "User-Agent",
+    "required": true,
+    "schema": {
+      "type": "string"
+    },
+    "description": "The identification string of user agent (browser, application, etc). The format is defined by [Section 5.5.3 of RFC 7231](https://tools.ietf.org/html/rfc7231#section-5.5.3)."
+  },
+  "header:Accept-Language": {
+    "in": "header",
+    "name": "Accept-Language",
+    "required": false,
+    "schema": {
+      "type": "string"
+    },
+    "description": "List of acceptable human languages for response. The format is defined by [Section 5.3.5 of RFC 7231](https://tools.ietf.org/html/rfc7231#section-5.3.5). See #docTextSection:zE8QfuPkuH6CdXAPi."
+  },
+  "header:X-HTTP-Method-Override": {
+    "in": "header",
+    "name": "X-HTTP-Method-Override",
+    "required": false,
+    "schema": {
+      "type": "string"
+    },
+    "description": "Put here the HTTP method you want, when making call by the POST method to avoid interference of nasty firewall rules (read [this](https://www.hanselman.com/blog/HTTPPUTOrDELETENotAllowedUseXHTTPMethodOverrideForYourRESTServiceWithASPNETWebAPI.aspx))."
+  },
+  "query:locale": {
+    "in": "query",
+    "name": "locale",
+    "required": false,
+    "schema": {
+      "type": "string"
+    },
+    "description": "The requested locale as [IETF language tag](https://en.wikipedia.org/wiki/IETF_language_tag) in format specified by [RFC 5646](https://tools.ietf.org/html/rfc5646) (language-TERRITORY). See #docTextSection:zE8QfuPkuH6CdXAPi."
+  }
+}  
